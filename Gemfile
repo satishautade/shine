@@ -50,3 +50,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use Devise gem for Login functionality
 gem 'devise'
+
+# Adding Bower for Front End depedency management
+gem 'bower-rails'
