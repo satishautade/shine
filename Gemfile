@@ -53,3 +53,6 @@ gem 'devise'
 
 # Adding Bower for Front End depedency management
 gem 'bower-rails'
+
+# Adding Faker to seed real looking data for customers
+gem 'faker'
