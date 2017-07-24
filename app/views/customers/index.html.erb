@@ -1,6 +1,6 @@
 <header>
   <h1 class="h1"> Customer Search </h1>
-  <div class="glyphicon-log-out text-right">
+  <div class="glyphicon-log-out text-right navbar-btn">
     <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
   </div>
 </header>
@@ -12,12 +12,11 @@
                            placeholder: "First Name, Last Name or Email Address",
                            class: "form-control input-lg" %>
         <span class="input-group-btn">
-            <%= submit_tag "Find Customers", class: "btn btn-primary btn-lg" %>
-          </span>
+          <%= submit_tag "Find Customers", class: "btn btn-primary btn-lg" %>
+        </span>
       </div>
   <% end %>
 </section>
-
 <section class="search-results">
   <header>
     <h1 class="h3">Search Results</h1>
