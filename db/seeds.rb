@@ -8,7 +8,7 @@
 
 require 'faker';
 
-3500.times do |i|
+350_000.times do |i|
   Customer.create!(
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
