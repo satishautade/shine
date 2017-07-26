@@ -9,22 +9,14 @@
 
   <section class="search-form">
     <form>
-      <div class="input-group input-group-lg">
         <label for="keywords" , class="sr-only"> Keywords </label>
         <input type="text"
                name="keywords"
                placeholder="First Name, Last Name or Email Address"
                class="form-control input-lg"
+               ng-change="search(keywords)"
                ng-model="keywords">
-        <span class="input-group-btn">
-          <button class="btn btn-primary btn-lg" ng-click="search(keywords)">
-            Find Customers
-          </button>
-        </span>
       </div>
-      <h1 class="searchedFor" ng-if="searchedFor">
-        <small>Searched For:</small> {{ searchedFor }}
-      </h1>
     </form>
   </section>
 

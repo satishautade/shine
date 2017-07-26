@@ -13,8 +13,10 @@ app.controller("CustomerSearchController",
             $scope.customers = [];
             // search function defined in the passed Angular Scope, requires a searchTerm param
             $scope.search = function (searchTerm) {
-                // Display the Search term on the page
-                $scope.searchedFor = searchTerm;
+                // Do not invoke if Search term is too short
+                if(searchTerm.length < 3){
+                    return;
+                }
                 // Fire an AJAX request to Server (CustomersController class), asking JSON response
                 $http.get("/customers.json", {"params": {"keywords": searchTerm, "page": page}}).
                 then(
