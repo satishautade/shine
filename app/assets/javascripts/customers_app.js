@@ -9,13 +9,14 @@ var app = angular.module('customers', []);
 app.controller("CustomerSearchController",
     ["$scope", "$http",
         function ($scope, $http) {
+            var page = 0;
             $scope.customers = [];
             // search function defined in the passed Angular Scope, requires a searchTerm param
             $scope.search = function (searchTerm) {
                 // Display the Search term on the page
                 $scope.searchedFor = searchTerm;
                 // Fire an AJAX request to Server (CustomersController class), asking JSON response
-                $http.get("/customers.json", {"params": {"keywords": searchTerm}}).
+                $http.get("/customers.json", {"params": {"keywords": searchTerm, "page": page}}).
                 then(
                     // Success Function
                     function (response) {
@@ -26,6 +27,18 @@ app.controller("CustomerSearchController",
                         alert("There was a problem" + response.status)
                     }
                 );
+            }
+
+            $scope.previousPage = function(){
+                if(page > 0){
+                    page = page - 1;
+                }
+                $scope.search($scope.keywords)
+            }
+
+            $scope.nextPage = function(){
+                page = page + 1;
+                $scope.search($scope.keywords)
             }
         }
     ]);
