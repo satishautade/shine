@@ -56,3 +56,4 @@ gem 'bower-rails'
 
 # Adding Faker to seed real looking data for customers
 gem 'faker'
+gem 'jquery-rails'
