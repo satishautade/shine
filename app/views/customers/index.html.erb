@@ -1,43 +1,56 @@
-<header>
-  <h1 class="h1"> Customer Search </h1>
-  <div class="glyphicon-log-out text-right navbar-btn">
-    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-  </div>
-</header>
+<article ng-app="customers" ng-controller="CustomerSearchController">
 
-<section class="search-form">
-  <%= form_for :customers, method: :get do %>
+  <header>
+    <h1 class="h1"> Customer Search </h1>
+    <div class="glyphicon-log-out text-right navbar-btn">
+      <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+    </div>
+  </header>
+
+  <section class="search-form">
+    <form>
       <div class="input-group input-group-lg">
-        <%= label_tag :keywords, nil, class: "sr-only" %>
-        <%= text_field_tag :keywords, nil,
-                           placeholder: "First Name, Last Name or Email Address",
-                           class: "form-control input-lg" %>
+        <label for="keywords" , class=sr-only"> Keywords </label>
+        <input type="text"
+               name="keywords"
+               placeholder="First Name, Last Name or Email Address"
+               class="form-control input-lg"
+               ng-model="keywords">
         <span class="input-group-btn">
-          <%= submit_tag "Find Customers", class: "btn btn-primary btn-lg" %>
+          <button class="btn btn-primary btn-lg"
+                  ng-click="search(keywords)">
+            Find Customers
+          </button>
         </span>
       </div>
-  <% end %>
-</section>
+      <h1 class="searchedFor" ng-if="searchedFor">
+        <small>Searched For:</small>
+        {{searchedFor}}
+      </h1>
+    </form>
+  </section>
 
-<section class="search-results">
-  <header>
-    <h2>Results</h2>
-  </header>
-  <%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>
-  <ol class="list-group">
-    <%= @customers.each do |customer| %>
-        <li class="list-group-item clearfix">
-          <h3 class="pull-right">
-            <small class="text-uppercase">Joined</small>
-            <%= l customer.created_at.to_date %>
-          </h3>
-          <h2 class="h3">
-            <%= customer.first_name %> <%= customer.last_name %>
-          </h2>
-          <small><%= customer.username %></small>
-          <h4><%= customer.email %></h4>
-        </li>
-    <% end %>
-  </ol>
-  <%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>
-</section>
+  <!--<section class="search-results">-->
+  <!--<header>-->
+  <!--<h2>Results</h2>-->
+  <!--</header>-->
+  <!--<%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>-->
+  <!--<ol class="list-group">-->
+  <!--<%= @customers.each do |customer| %>-->
+      <!--<li class="list-group-item clearfix">-->
+      <!--<h3 class="pull-right">-->
+      <!--<small class="text-uppercase">Joined</small>-->
+      <!--<%= l customer.created_at.to_date %>-->
+      <!--</h3>-->
+      <!--<h2 class="h3">-->
+      <!--<%= customer.first_name %> <%= customer.last_name %>-->
+      <!--</h2>-->
+      <!--<small><%= customer.username %></small>-->
+      <!--<h4><%= customer.email %></h4>-->
+      <!--</li>-->
+      <!--
+  <% end %>-->
+  <!--</ol>-->
+  <!--<%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>-->
+  <!--</section>-->
+</article>
