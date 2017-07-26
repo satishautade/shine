@@ -10,47 +10,46 @@
   <section class="search-form">
     <form>
       <div class="input-group input-group-lg">
-        <label for="keywords" , class=sr-only"> Keywords </label>
+        <label for="keywords" , class="sr-only"> Keywords </label>
         <input type="text"
                name="keywords"
                placeholder="First Name, Last Name or Email Address"
                class="form-control input-lg"
                ng-model="keywords">
         <span class="input-group-btn">
-          <button class="btn btn-primary btn-lg"
-                  ng-click="search(keywords)">
+          <button class="btn btn-primary btn-lg" ng-click="search(keywords)">
             Find Customers
           </button>
         </span>
       </div>
       <h1 class="searchedFor" ng-if="searchedFor">
-        <small>Searched For:</small>
-        {{searchedFor}}
+        <small>Searched For:</small> {{ searchedFor }}
       </h1>
     </form>
   </section>
 
-  <!--<section class="search-results">-->
-  <!--<header>-->
-  <!--<h2>Results</h2>-->
-  <!--</header>-->
-  <!--<%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>-->
-  <!--<ol class="list-group">-->
-  <!--<%= @customers.each do |customer| %>-->
-      <!--<li class="list-group-item clearfix">-->
-      <!--<h3 class="pull-right">-->
-      <!--<small class="text-uppercase">Joined</small>-->
-      <!--<%= l customer.created_at.to_date %>-->
-      <!--</h3>-->
-      <!--<h2 class="h3">-->
-      <!--<%= customer.first_name %> <%= customer.last_name %>-->
-      <!--</h2>-->
-      <!--<small><%= customer.username %></small>-->
-      <!--<h4><%= customer.email %></h4>-->
-      <!--</li>-->
-      <!--
-  <% end %>-->
-  <!--</ol>-->
-  <!--<%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>-->
-  <!--</section>-->
+  <section class="search-results">
+    <header>
+      <h2>Results</h2>
+    </header>
+    <%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>
+
+    <ol class="list-group">
+      <li class="list-group-item clearfix"
+          ng-repeat="customer in customers">
+        <h3 class="pull-right">
+          <small class="text-uppercase">Joined</small>
+          {{ customer.created_at | date }}
+        </h3>
+        <h2 class="h3">
+          {{customer.first_name}} {{customer.last_name }}
+        </h2>
+        <small>{{ customer.username }}</small>
+        <h4>{{ customer.email }}</h4>
+      </li>
+    </ol>
+
+    <%= render partial: 'pager', locals: {keywords: @keywords, page: @page} %>
+  </section>
+
 </article>
