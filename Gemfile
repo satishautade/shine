@@ -38,6 +38,11 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+
+  # Adding Poltergeist for UI Acceptance Tests using PhantomJS
+  gem 'poltergeist'
+  # Database cleaner gem for restoring Test Database
+  gem 'database_cleaner'
 end
 
 group :development do
