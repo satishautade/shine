@@ -63,3 +63,6 @@ gem 'bower-rails'
 # Adding Faker to seed real looking data for customers
 gem 'faker'
 gem 'jquery-rails'
+
+# Adding Teaspoon for supporting Jasmine tests in Angular
+gem 'teaspoon-jasmine'
