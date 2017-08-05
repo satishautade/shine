@@ -23,7 +23,7 @@ describe("Test Angular Controller", function () {
 
         // Mind the sequence of below code
         // Step 1: Load Angular App (DOES NOT START IT)
-        beforeEach(module('customers'))
+        beforeEach(module('customers'));
 
         // Step 2: Use inject to Mock the call to Angular controller with rootScope (angular like scope)
         beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
@@ -51,6 +51,34 @@ describe("Test Angular Controller", function () {
             scope.search("bob");
             httpBackend.flush();
             expect(scope.customers).toEqualData(cannedCustomersResponse);
+        });
+    });
+    
+    describe("Error Handling", function () {
+        var scope = null,
+            controller = null,
+            httpBackend = null;
+
+        beforeEach(module('customers'));
+        beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+            scope = $rootScope.$new();
+            httpBackend = $httpBackend;
+            // Call the controller using inject method and pass scope
+            controller = $controller("CustomerSearchController", {
+                $scope: scope
+            });
+        }));
+        beforeEach(function () {
+            httpBackend.when('GET', '/customers.json?keywords=bob&page=0').
+            respond(500, 'Internal Server Error');
+            spyOn(window, "alert");
+        });
+
+        it("Alerts the user on error", function () {
+            scope.search("bob");
+            httpBackend.flush();
+            expect(scope.customers).toEqualData([]);
+            expect(window.alert).toHaveBeenCalledWith("There was a problem: 500");
         });
     });
 

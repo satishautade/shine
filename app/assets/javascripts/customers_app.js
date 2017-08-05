@@ -26,7 +26,7 @@ app.controller("CustomerSearchController",
                     },
                     // Failure Function
                     function (response) {
-                        alert("There was a problem" + response.status)
+                        alert("There was a problem: " + response.status)
                     }
                 );
             }
